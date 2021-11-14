@@ -1,0 +1,68 @@
+<div>
+  <div class="container">
+    <div class="grid">
+      <div class="grid-item">
+
+
+        <mat-card>
+          <div class="card-title">
+            <mat-card-title>File Upload</mat-card-title>
+            <mat-divider></mat-divider>
+          </div>
+
+          <form [formGroup]="formGroup" class="file-form">
+            <div class="file-control">
+              <label for="fileInput" class="file-label">Select a file</label>
+              <input
+                type="file"
+                class="file-input"
+                (change)="onFileSelected($event)"
+                id="fileInput"
+                #fileInput
+              />
+              <button
+                mat-mini-fab
+                type="button"
+                class="file-buttom"
+                color="primary"
+                (click)="fileInputSelected()"
+              >
+                <mat-icon>attach_file</mat-icon>
+              </button>
+            </div>
+
+            <mat-form-field appearance="legacy" class="file-name">
+              <mat-label>Nombre</mat-label>
+              <input matInput type="text" formControlName="name" />
+            </mat-form-field>
+
+            <div>
+              <button
+                mat-raised-button
+                type="button"
+                class="file-buttom"
+                color="primary"
+                (click)="upload()"
+              >
+                Upload
+              </button>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+
+      <div class="grid-item">
+        <img
+          [src]="fileData"
+          alt="Place image title"
+          class="file-image"
+          *ngIf="fileData; else noImageFound"
+        />
+
+        <ng-template #noImageFound>
+          <h3 class="empty-message">No file</h3>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
