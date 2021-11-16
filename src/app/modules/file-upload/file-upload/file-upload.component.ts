@@ -26,6 +26,7 @@ export class FileUploadComponent implements OnInit {
     file: new FormControl(null, [Validators.required]),
     name: new FormControl('', [Validators.required]),
     fileData: new FormControl('', [Validators.required]),
+    storageType: new FormControl(true),
   });
 
   uploaded = false;
@@ -60,10 +61,11 @@ export class FileUploadComponent implements OnInit {
           file: file,
           fileData: reader.result,
           name: name,
+          storageType: true,
         });
         this.formGroup.enable();
         // need to run CD since file load runs outside of zone
-        this.changeDetector.markForCheck();
+       // this.changeDetector.markForCheck();
       };
 
       reader.readAsDataURL(file);
@@ -74,14 +76,23 @@ export class FileUploadComponent implements OnInit {
     $event.preventDefault();
   }
 
+  onStorageChange($event: any) {
+    this.formGroup.patchValue({
+      storageType: $event.checked,
+    });
+    //this.changeDetector.markForCheck();
+  }
+
   async upload() {
     try {
       if (this.formGroup.valid) {
         console.log('valid');
+
+        const storage = this.storageCheck ? 0 : 1;
         const data = await this.fileService.uploadFile(
           this.file,
           this.fileName,
-          0
+          storage
         );
         console.log(data);
         this.uploaded = true;
@@ -104,5 +115,9 @@ export class FileUploadComponent implements OnInit {
 
   get fileName() {
     return this.formGroup.get('name')?.value;
+  }
+
+  get storageCheck() {
+    return this.formGroup.get('storageType')?.value;
   }
 }

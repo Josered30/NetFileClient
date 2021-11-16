@@ -10,7 +10,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [FileUploadComponent],
   imports: [
@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatGridListModule,
     MatCardModule,
     MatDividerModule,
+    MatSlideToggleModule,
   ],
 })
 export class FileUploadModule {}

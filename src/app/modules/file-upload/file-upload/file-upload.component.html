@@ -2,8 +2,6 @@
   <div class="container">
     <div class="grid">
       <div class="grid-item">
-
-
         <mat-card>
           <div class="card-title">
             <mat-card-title>File Upload</mat-card-title>
@@ -34,7 +32,19 @@
             <mat-form-field appearance="legacy" class="file-name">
               <mat-label>Nombre</mat-label>
               <input matInput type="text" formControlName="name" />
+              <mat-error
+                *ngIf="formGroup.get('name')?.invalid"
+                >{{'Ingrese un nombre'}}</mat-error
+              >
             </mat-form-field>
+
+            <mat-slide-toggle
+              class="storage-check"
+              (change)="onStorageChange($event)"
+              [checked]="storageCheck"
+            >
+              {{ storageCheck ? "Cloud" : "Local" }}
+            </mat-slide-toggle>
 
             <div>
               <button
@@ -51,7 +61,7 @@
         </mat-card>
       </div>
 
-      <div class="grid-item">
+      <div class="grid-item image-grid">
         <img
           [src]="fileData"
           alt="Place image title"

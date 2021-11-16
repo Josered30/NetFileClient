@@ -33,6 +33,7 @@ $dark-theme: mat.define-dark-theme(
 @include mat.input-theme($dark-theme);
 @include mat.card-theme($dark-theme);
 @include mat.divider-theme($dark-theme);
+@include mat.slide-toggle-theme($dark-theme);
 
 // Apply the light theme only when the `.my-light-theme` CSS class is applied
 // to an ancestor element of the components (such as `body`).
@@ -43,6 +44,7 @@ $dark-theme: mat.define-dark-theme(
   @include mat.input-theme($light-theme);
   @include mat.card-theme($light-theme);
   @include mat.divider-theme($light-theme);
+  @include mat.slide-toggle-theme($light-theme);
 }
 /* You can add global styles to this file, and also import other style files */
 
